@@ -131,6 +131,11 @@ def duplicate_neighbor(total_node, edge_index, sampling_src_idx):
     node_mask = torch.zeros(total_node, dtype=torch.bool)
     unique_src = torch.unique(sampling_src_idx)
     node_mask[unique_src] = True
+    
+    device = torch.device('cuda:0')
+    node_mask = node_mask.to(device)
+    row = row.to(device)
+    
     row_mask = node_mask[row]
     edge_mask = col[row_mask]
     b_idx = torch.arange(len(unique_src)).to(device).repeat_interleave(degree[unique_src])

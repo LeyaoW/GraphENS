@@ -3,7 +3,7 @@ import numpy as np
 from torch_scatter import scatter_add
 
 
-def get_dataset(name, path, split_type='full'):
+def get_dataset0(name, path, split_type='full'):
     import torch_geometric.transforms as T
 
     if name == "Cora" or name == "CiteSeer" or name == "PubMed":
@@ -38,6 +38,10 @@ def get_idx_info(label, n_cls, train_mask):
     index_list = torch.arange(len(label))
     idx_info = []
     for i in range(n_cls):
+        device = torch.device('cuda:0')
+        index_list = index_list.to(device)
+        label = label.to(device)
+        train_mask = train_mask.to(device)
         cls_indices = index_list[((label == i) & train_mask)]
         idx_info.append(cls_indices)
     return idx_info

@@ -4,16 +4,20 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     # Dataset
-    parser.add_argument('--dataset', type=str, default='Cora',
+    # parser.add_argument('--dataset', type=str, default='Cora',
+    #                     help='Dataset Name')
+    parser.add_argument('--dataset', type=str, default='cora_raw',
                         help='Dataset Name')
-    parser.add_argument('--imb_ratio', type=float, default=10,
+    parser.add_argument('--imb_ratio', type=float, default=0.2,
                         help='Imbalance Ratio')
+    
+    #parser.add_argument('--imb_class', type=str, default="01234")
     # Architecture
     parser.add_argument('--net', type=str, default='GCN',
                         help='Architecture name')
     parser.add_argument('--n_layer', type=int, default=2,
                         help='the number of layers')
-    parser.add_argument('--feat_dim', type=int, default=256,
+    parser.add_argument('--feat_dim', type=int, default=64,
                         help='Feature dimension')
     # GAT
     parser.add_argument('--n_head', type=int, default=8,
@@ -31,6 +35,9 @@ def parse_args():
                         help='Prediction temperature')
     parser.add_argument('--warmup', type=int, default=1,
                         help='warmup')
+    parser.add_argument('--imb_class', type=str, default="01")
+    parser.add_argument('--seed', type=float, default=1033)
+    
     args = parser.parse_args()
 
     return args
