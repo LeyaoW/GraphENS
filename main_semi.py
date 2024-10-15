@@ -263,7 +263,7 @@ for r in range(repeatition):
     prev_out = None
     aggregator = MeanAggregation()
     for epoch in range(1, 1001):
-        if epoch%50==0:
+        if epoch%100==0:
             print(epoch)
         train(data)
         accs, bacc, f1s, maj_acc, min_acc = test(args,data)
