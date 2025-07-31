@@ -1,5 +1,4 @@
 import os.path as osp
-import random
 import torch
 import torch.nn.functional as F
 from nets import *
@@ -11,6 +10,7 @@ from sklearn.metrics import balanced_accuracy_score, f1_score
 import statistics
 import numpy as np
 from dataset import *
+import secrets
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -173,7 +173,7 @@ for r in range(repeatition):
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     np.random.seed(seed)
     seed += 1
 

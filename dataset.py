@@ -6,8 +6,8 @@ from torch_sparse import SparseTensor
 from torch_geometric.utils import to_undirected, add_self_loops
 import numpy as np
 import warnings
-import random
 import os
+import secrets
 
 warnings.filterwarnings("ignore", message="`resume_download` is deprecated")
 
@@ -33,7 +33,7 @@ def normalize_edge(edge_index, n_node):
     return edge_index, edge_weight_gcn, edge_weight_sage
    
 def seed_everything(seed=1033):
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
